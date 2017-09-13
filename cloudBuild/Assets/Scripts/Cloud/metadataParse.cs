@@ -11,14 +11,14 @@ using UnityEngine.Networking;
 public class metadataParse : MonoBehaviour {
 	
 	//in the dashboard, they'll have the option to put in contact info. 
-	public string emailContact = "none";
-	public string webContact = "none";
-	public string phoneContact = "none";
-	public GameObject phoneButton;
-	public GameObject emailButton;
-	
-	//debugging
-	float startTime = 0f;
+	public string emailContact = "null";
+	public string phoneContact = "null";
+    public string webContact = "null";
+
+    public GameObject[] contactButtons;
+
+    //debugging
+    float startTime = 0f;
 	public Text debugText;
 	//path to save target info locally 
 	string streamPath; 
@@ -150,11 +150,14 @@ public class metadataParse : MonoBehaviour {
 			load3dAsset(splitMetadata[1]);
             }
 			break;
-		case "estatePhone":
-			updatePhone(splitMetadata[1]);
-			break;
-		case "estateEmail":
+        case "estateEmail":
 			updateEmail(splitMetadata[1]);
+			break;
+        case "estatePhone":
+            updatePhone(splitMetadata[1]);
+			break;
+		case "estateWebsite":
+			updateWebsite(splitMetadata[1]);
 			break;
 		default:
 			break;
@@ -170,23 +173,47 @@ public class metadataParse : MonoBehaviour {
 	void updateEmail(string email){
 		emailContact = email;
 	}
-	
-	public void runContactAnimation(){
+
+    void updateWebsite(string website)
+    {
+        webContact = website;
+    }
+
+    public void runContactAnimation(){
+
+        int buttonIndex = 0;
+
         if(emailContact != "null")
         {
-            emailButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            emailButton.GetComponent<Animator>().Play("emailInOut", -1, 0f);
+            Debug.Log("Found email contact");
+            contactButtons[buttonIndex].GetComponent<Animator>().SetInteger("index", buttonIndex);
+            contactButtons[buttonIndex].GetComponent<Animator>().SetBool("isActive", true);
+            contactButtons[buttonIndex].GetComponent<ContactButton>().SetButtonType(0);
+            buttonIndex++;
         }
-        if(phoneContact != "null")
+        if (phoneContact != "null")
         {
-            phoneButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            phoneButton.GetComponent<Animator>().Play("phoneInOut", -1, 0f);
+            Debug.Log("Found phone contact");
+            contactButtons[buttonIndex].GetComponent<Animator>().SetInteger("index", buttonIndex);
+            contactButtons[buttonIndex].GetComponent<Animator>().SetBool("isActive", true);
+            contactButtons[buttonIndex].GetComponent<ContactButton>().SetButtonType(1);
+            buttonIndex++;
+        }
+        if (webContact != "null")
+        {
+            Debug.Log("Found web contact");
+            contactButtons[buttonIndex].GetComponent<Animator>().SetInteger("index", buttonIndex);
+            contactButtons[buttonIndex].GetComponent<Animator>().SetBool("isActive", true);
+            contactButtons[buttonIndex].GetComponent<ContactButton>().SetButtonType(2);
+            buttonIndex++;
         }
 
-	}
+    }
 	public void resetContactButtons(){
-		emailButton.transform.localScale = new Vector3(0.0f,1.0f,1.0f);
-		phoneButton.transform.localScale = new Vector3(0.0f,1.0f,1.0f);
+		foreach (GameObject button in contactButtons)
+        {
+            button.GetComponent<Animator>().SetBool("isActive", false);
+        }
 
 	}
 

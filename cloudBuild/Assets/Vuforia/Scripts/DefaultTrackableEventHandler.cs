@@ -147,7 +147,6 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             string trackableName = mTrackableBehaviour.TrackableName;
             analyticsControl.launchTimeTrack(true);
-            mParser.runContactAnimation();
             if (targetControl.currentTrackable != trackableName)
             {
                 targetControl.currentTrackable = trackableName;
@@ -165,6 +164,8 @@ namespace Vuforia
                 mParser.pauseVideo = true;
 
             }
+            mParser.runContactAnimation();
+    
 
 
 
