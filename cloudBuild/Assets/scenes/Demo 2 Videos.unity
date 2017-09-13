@@ -161,7 +161,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: f0082db35c5d5614f9e8c63a7f86aa4e, type: 2}
       propertyPath: m_strFileName
-      value: https://s3.us-east-2.amazonaws.com/launchable-mobile-application/Videos/Rick+and+Morty+-+20+Minutes+of+DMX+Beatdown.mp4
+      value: http://d2elg0m5gp2pj9.cloudfront.net/Videos/LaunchCard-High.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: f0082db35c5d5614f9e8c63a7f86aa4e, type: 2}
       propertyPath: m_IsActive
