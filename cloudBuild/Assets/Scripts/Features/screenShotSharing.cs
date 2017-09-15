@@ -24,6 +24,8 @@ public class screenShotSharing : MonoBehaviour {
 	public GameObject ImageHolder;
 	public GameObject bigFlash;
 
+    public DebugManager debugConsole;
+
 //	public GameObject _PanelCoaching1;
 //	public GameObject _PanelCoaching2;
 //	public GameObject _PanelCoaching3;
@@ -47,7 +49,9 @@ public class screenShotSharing : MonoBehaviour {
 	// defind all the things need to be done first
 	void Start() {
 
-		InitStyles();
+        debugConsole = GameObject.Find("Debug").GetComponent<DebugManager>();
+
+        InitStyles();
 		ImageHolder.SetActive (false);
 		screenCap = new Texture2D(Screen.width, Screen.height, TextureFormat.RGBA32, false); // 1
 //		analyticsControl = GameObject.FindObjectOfType<analyticsController> ();
@@ -97,6 +101,7 @@ public class screenShotSharing : MonoBehaviour {
 		bigFlash.SetActive (false);
 		findTarget.SetActive (false);
 		flash.gameObject.SetActive (false);
+        debugConsole.gameObject.SetActive(false);
 	}
 
 	private void activeInterface ()
@@ -131,7 +136,7 @@ public class screenShotSharing : MonoBehaviour {
 	// catch the screen shot and load it to the screen
 	public void captureScreen()
 	{
-        tapToFocus.OnClicked += captureScreenHandler; 
+        tapToFocus.OnClicked += captureScreenHandler;
 	}
 
     public void captureScreenHandler()
@@ -225,14 +230,17 @@ public class screenShotSharing : MonoBehaviour {
 		cancel.gameObject.SetActive (false);
 		facebook.gameObject.SetActive (false);
 		twitter.gameObject.SetActive (false);
+        debugConsole.gameObject.SetActive(true);
 
-		noAnimation = false;
+        noAnimation = false;
 		noPhoneEmailButtons = false;
-	}
 
 
-	// facebook sharing
-	public void postTextureFB(){
+    }
+
+
+    // facebook sharing
+    public void postTextureFB(){
 		UM_ShareUtility.FacebookShare("@TeamLaunchable " + "#launchable", screenCap);
 //		analyticsControl.screenshotShare("facebook");
 	}
