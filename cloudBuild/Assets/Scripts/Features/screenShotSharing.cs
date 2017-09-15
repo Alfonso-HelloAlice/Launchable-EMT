@@ -153,11 +153,11 @@ public class screenShotSharing : MonoBehaviour {
 
 
         if (currentPhone != null){
-			currentPhone.gameObject.SetActive (false);
+			//currentPhone.gameObject.SetActive (false);
 			print ("phone should be gone now");
 		}
 		if (currentEmail != null) {
-			currentEmail.gameObject.SetActive (false);
+			//currentEmail.gameObject.SetActive (false);
 			print ("email should be gone now");
 		}
 			

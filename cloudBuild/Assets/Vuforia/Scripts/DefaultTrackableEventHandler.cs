@@ -165,10 +165,6 @@ namespace Vuforia
 
             }
             mParser.runContactAnimation();
-    
-
-
-
 
         }
 

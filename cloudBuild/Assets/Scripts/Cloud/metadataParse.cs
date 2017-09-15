@@ -214,7 +214,6 @@ public class metadataParse : MonoBehaviour {
         {
             button.GetComponent<Animator>().SetBool("isActive", false);
         }
-
 	}
 
     IEnumerator EasyVideoPlay()
