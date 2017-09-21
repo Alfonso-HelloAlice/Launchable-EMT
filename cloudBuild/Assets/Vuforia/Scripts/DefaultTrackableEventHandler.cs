@@ -106,6 +106,12 @@ namespace Vuforia
 
         private void OnTrackingFound()
         {
+
+            if (!targetControl.ready)
+            {
+                return;
+            }
+
             GameObject.Find("targetManager").GetComponent<TargetTracker>().AddTarget(this.gameObject);
 
             ispaused = mParser.isPaused;
